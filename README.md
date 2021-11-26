@@ -2,7 +2,7 @@
 
 pytest-warn-app (**PWA**) is a simple PWA (*as in progressive web application*) for [pytest-qr](https://github.com/evgeni/pytest-qr). As you might have guessed by now it is a low effort parody of [Corona Warn App](https://github.com/corona-warn-app).
 
-TODO: Screenshot
+![Screenshot](https://raw.githubusercontent.com/stdevel/pytest-warn-app.github.io/master/screenshot.png "Screenshot")
 
 Click [here](https://stdevel.github.io/pytest-warn-app.github.io/) for a demonstration.
 
