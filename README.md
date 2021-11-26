@@ -26,4 +26,7 @@ Yes, you might be right. I'm not a web developer - feel free to improve it.
 
 ## Credits
 
-Thanks [jamesjohnson280/hello-pwa](https://github.com/jamesjohnson280/hello-pwa) for a simple PWA example that doesn't require shitloads of javascript
+Thanks:
+
+- [jamesjohnson280/hello-pwa](https://github.com/jamesjohnson280/hello-pwa) for a simple PWA example that doesn't require shitloads of javascript
+- [mebjas/html5-qrcode](https://github.com/mebjas/html5-qrcode) for the HTML5 QR code reader library

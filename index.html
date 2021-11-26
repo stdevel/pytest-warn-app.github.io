@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>py.test Warn App</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="images/pwa-icon-152.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="white"/>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="py.test Warn App">
+  <meta name="msapplication-TileImage" content="images/pwa-icon-144.png">
+  <meta name="msapplication-TileColor" content="#FFFFFF">
+</head>
+<body class="fullscreen">
+  <div class="container">
+    <img src="images/pwa-logo.png">
+    <h1 class="title">py.test Warn App</h1>
+    <div id="result">Bitte QR-Code erfassen</div>
+    <div id="reader" width="600px" height="600px"></div>
+    <input type="file" id="qr-input-file" accept="image/*">
+  </div>
+  <script src="js/main.js"></script>
+  <script src="js/html5-qrcode.min.js"></script>
+  <script>
+    const html5QrCode = new Html5Qrcode(/* element id */ "reader");
+    // File based scanning
+    const fileinput = document.getElementById('qr-input-file');
+    fileinput.addEventListener('change', e => {
+      if (e.target.files.length == 0) {
+        // No file selected, ignore 
+        return;
+      }
+
+      const imageFile = e.target.files[0];
+      // Scan QR Code
+      html5QrCode.scanFile(imageFile, true)
+      .then(decodedText => {
+        // success, use decodedText
+        console.log(decodedText);
+        // split words
+        const words = decodedText.replace('- ', '').split(' ');
+        // set background color based on result
+        if (words[0] == "BAD") {
+          document.getElementById('result').style.backgroundColor ='red';
+          document.getElementById('result').innerHTML = "<h2>Unit-Tests fehlerhaft</h2>";
+          document.getElementById('result').innerHTML += decodedText;
+        } else if(words[0] == "GOOD") {
+          document.getElementById('result').style.backgroundColor ='#90EE90';
+          document.getElementById('result').innerHTML = "<h2>Unit-Tests erfolgreich</h2>";
+          document.getElementById('result').innerHTML += decodedText;
+        } else {
+          document.getElementById('result').style.backgroundColor ='red';
+          document.getElementById('result').innerHTML = "<h2>Fehlerhafter py.test QR-Code</h2>";
+        }
+      })
+      .catch(err => {
+        // failure, handle it.
+        console.log(`Error scanning file. Reason: ${err}`)
+      });
+    });
+  </script>
+</body>
+</html>
