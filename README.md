@@ -4,7 +4,7 @@ pytest-warn-app (**PWA**) is a simple PWA (*as in progressive web application*) 
 
 TODO: Screenshot
 
-Click TODO for a demonstration.
+Click [here](https://stdevel.github.io/pytest-warn-app.github.io/) for a demonstration.
 
 ## Usage
 
